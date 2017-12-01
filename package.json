@@ -1,0 +1,26 @@
+{
+  "name": "vue-timers",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Mixin to manage your intervals in Vue.js",
+  "main": "index.js",
+  "repository": "https://github.com/kelin2025/vue-timers",
+  "author": {
+    "email": "kelin2025@yandex.ru",
+    "name": "Anton Kosykh"
+  },
+  "scripts": {
+    "lint": "eslint --fix src/*.js",
+    "size": "size-limit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "size-limit": "^0.13.2"
+  }
+}
