@@ -232,6 +232,7 @@ export default {
 ```
 
 ### isRunning property
+![image](https://user-images.githubusercontent.com/4208480/33508558-14ee8b04-d70c-11e7-9158-a36482458769.png)
 ```vue
 <template>
   <div id="app">
