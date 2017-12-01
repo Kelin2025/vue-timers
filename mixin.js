@@ -19,7 +19,9 @@ function configNormalizer (vm) {
     }
     var cfg = {}
     cfg.name = config.name
-    cfg.repeat = config.repeat || true
+    cfg.repeat = 'repeat' in config
+      ? config.repeat
+      : true
     cfg.time = config.time || 1000
     cfg.immediate = config.repeat && (config.immediate || false)
     cfg.instance = null
