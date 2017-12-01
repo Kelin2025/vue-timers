@@ -4,6 +4,6 @@ export default function (Vue) {
   Vue.mixin(mixin)
 }
 
-export function createTimer (name, time, options) {
+export function timer (name, time, options) {
   return Object.assign({ name, time }, options)
 }
