@@ -15,7 +15,7 @@ function configNormalizer (vm) {
 
   return function normalizeConfig (config) {
     if (Array.isArray(config)) {
-      return normalizeConfig({ name: config[0], ...config[1] })
+      return normalizeConfig(Object.assign({ name: config[0] }, config[1]))
     }
     var cfg = {}
     cfg.name = config.name
