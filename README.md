@@ -52,6 +52,7 @@ export default {
   }
 }
 ```
+It's ugly, isn't it? So let's try to fix this :)
 
 ## Timers declaration
 
