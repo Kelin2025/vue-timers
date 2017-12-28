@@ -2,13 +2,17 @@ function configNormalizer (vm) {
   function isFunction (callback) {
     var type = typeof callback
     if (type !== 'function') {
-      throw new TypeError('Timer callback is ' + type + ' but expected string/function/undefined')
+      throw new TypeError(
+        'Timer callback is ' + type + ' but expected string/function/undefined'
+      )
     }
   }
 
   function isMethodAvailable (name) {
     if (!(name in vm)) {
-      throw new ReferenceError('Timer callback ' + name + ' not found in Vue instance')
+      throw new ReferenceError(
+        'Timer callback ' + name + ' not found in Vue instance'
+      )
     }
     isFunction(vm[name])
   }
@@ -19,17 +23,18 @@ function configNormalizer (vm) {
     }
     var cfg = {}
     cfg.name = config.name
-    cfg.repeat = 'repeat' in config
-      ? config.repeat
-      : true
+    cfg.repeat = 'repeat' in config ? config.repeat : true
     cfg.time = config.time || 1000
     cfg.immediate = config.repeat && (config.immediate || false)
     cfg.instance = null
-    cfg.autostart = config.autostart || true
+    cfg.autostart = 'autostart' in config ? config.autostart : true
     cfg.isRunning = false
     cfg.start = function startInterval () {
       if (cfg.isRunning) return
-      cfg.instance = (cfg.repeat ? setInterval : setTimeout)(cfg.callback, cfg.time)
+      cfg.instance = (cfg.repeat ? setInterval : setTimeout)(
+        cfg.callback,
+        cfg.time
+      )
       if (cfg.immediate) {
         cfg.callback()
       }
@@ -37,7 +42,7 @@ function configNormalizer (vm) {
       vm.$emit('timer-start:' + cfg.name)
     }
     cfg.stop = function stopInterval () {
-      (cfg.repeat ? clearInterval : clearTimeout)(cfg.instance)
+      ;(cfg.repeat ? clearInterval : clearTimeout)(cfg.instance)
       cfg.isRunning = false
       vm.$emit('timer-stop:' + cfg.name)
     }
@@ -113,9 +118,14 @@ export default {
 
     if (Array.isArray(this.$options.timers)) {
       for (var index in this.$options.timers) {
-        this.$timers.add(Object.assign({
-          name: this.$options.timers[index].name
-        }, this.$options.timers[index]))
+        this.$timers.add(
+          Object.assign(
+            {
+              name: this.$options.timers[index].name
+            },
+            this.$options.timers[index]
+          )
+        )
       }
     } else {
       for (var name in this.$options.timers) {
