@@ -101,6 +101,55 @@ export default {
 }
 ```
 
+### Changing timer duration
+```javascript
+this.timers.log.time = 2000
+```
+> **NOTE:** you should restart timer to apply changes
+
+### Component methods
+```javascript
+// Starts `log` timer
+this.$timer.start('log')
+// Stops `log` timer
+this.$timer.stop('log')
+```
+
+### isRunning property
+```javascript
+this.timers.log.isRunning
+```
+
+### Events
+
+#### TimerComponent.vue
+```javascript
+
+import { timer } from 'vue-timers'
+
+export default {
+  timers: [
+    timer('log', 1000)
+  ],
+  methods: {
+    log () {
+      console.log('It works!')
+    }
+  }
+}
+```
+
+#### App.vue
+```vue
+<template>
+  <timer-component
+    @timer-start:log="timerStarted"
+    @timer-stop:log="timerStopped"
+    @timer-tick:log="timerTicked"
+  />
+</template>
+```
+
 ### 3 ways of timers declaration
 
 #### Object notation
@@ -130,51 +179,6 @@ export default {
     timer('log', 1000, { ...options })
   ]
 }
-```
-
-### Timers handling
-
-#### Component methods
-```javascript
-// Starts `log` timer
-this.$timer.start('log')
-// Stops `log` timer
-this.$timer.stop('log')
-```
-
-#### isRunning property
-```javascript
-this.timers.log.isRunning
-```
-
-#### Events
-
-##### Component.vue
-```javascript
-
-import { timer } from 'vue-timers'
-
-export default {
-  timers: [
-    timer('log', 1000)
-  ],
-  methods: {
-    log () {
-      console.log('It works!')
-    }
-  }
-}
-```
-
-##### App.vue
-```vue
-<template>
-  <timer-component
-    @timer-start:log="timerStarted"
-    @timer-stop:log="timerStopped"
-    @timer-tick:log="timerTicked"
-  />
-</template>
 ```
 
 ## Author
