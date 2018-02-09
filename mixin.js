@@ -52,6 +52,7 @@ function normalizeConfig(config, vm) {
     time: config.time || 0,
     repeat: 'repeat' in config ? config.repeat : false,
     immediate: 'immediate' in config ? config.immediate : false,
+    autostart: 'autostart' in config ? config.autostart : false,
     callback: (config.callback && config.callback.bind(vm)) || vm[config.name]
   }
 }
@@ -96,6 +97,10 @@ export default {
           set('timer', data[name].time, options[name]),
           vm
         )
+        if (options[name].immediate) {
+          vm.$emit('timer-tick:' + name)
+          options[name].callback()
+        }
         vm.$emit('timer-start:' + name)
       },
 
@@ -117,7 +122,7 @@ export default {
     var vm = this
     var options = vm.$options.timers
     Object.keys(options).forEach(function(key) {
-      if (options[key].immediate) {
+      if (options[key].autostart) {
         vm.$timer.start(key)
       }
     })
