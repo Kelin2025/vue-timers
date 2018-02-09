@@ -3,13 +3,13 @@ Simple mixin to manage timers or intervals for Vue.js
 
 ## Installation
 
-### 1. Install from package manager
+#### 1. Install from package manager
 ```
 npm install vue-timers
 yarn add vue-timers
 ```
 
-### 2.1. Global import
+#### 2.1. Global import
 ```javascript
 import Vue from 'vue'
 import VueTimers from 'vue-timers'
@@ -17,7 +17,7 @@ import VueTimers from 'vue-timers'
 Vue.use(VueTimers)
 ```
 
-### 2.2. Import mixin locally for components
+#### 2.2. Or use mixin for the specific component
 ```javascript
 import VueTimers from 'vue-timers/mixin'
 
@@ -54,7 +54,21 @@ export default {
 ```
 It's ugly, isn't it? So let's try to fix this :)
 
-## Timers declaration
+Same code with `vue-timers`:
+```javascript
+export default {
+  timers: {
+    log: { time: 1000, autostart: true }
+  },
+  methods: {
+    log () {
+      console.log('Hello world')
+    }
+  }
+}
+```
+
+## Configuration
 
 ### Timer object
 ```javascript
@@ -87,183 +101,57 @@ It's ugly, isn't it? So let's try to fix this :)
 }
 ```
 
-### Object notation 
+### 3 ways of timers declaration
+
+#### Object notation
 ```javascript
 export default {
   timers: {
-    log: {
-      time: 1000,
-      immediate: true
-    },
-    log2: {
-      time: 2000,
-      immediate: true
-    },
-    log3: {
-      time: 1000,
-      repeat: false,
-      callback () {
-        console.log('I\'m not like others and work once')
-      }
-    }
-  },
-  methods: {
-    log () {
-      console.log('It works!')
-    },
-    log2 () {
-      console.log('It works two times slower!')
-    }
+    log: { time: 1000, ...options }
   }
 }
 ```
 
-### Array notation
+#### Array notation
 ```javascript
 export default {
   timers: [
-    { name: 'log', timer: 1000, immediate: true },
-    { name: 'log2', timer: 1000, immediate: true },
-    { name: 'log3', timer: 1000, repeat: false, 
-      callback () {
-        console.log('I\'m not like others and work once')
-      }
-    }
-  ],
-  methods: {
-    log () {
-      console.log('It works!')
-    },
-    log2 () {
-      console.log('It works two times slower!')
-    }
-  }
+    { name: 'log' time: 1000, ...options }
+  ]
 }
 ```
 
-### Use with helper
+#### Helper function
 ```javascript
 import { timer } from 'vue-timers'
 
 export default {
   timers: [
-    timer('log', 1000, { immediate: true }),
-    timer('log2', 2000, { immediate: true }),
-    timer('log3', 1000, { 
-      repeat: false, 
-      callback () {
-        console.log('I\'m not like others and work once')
-      }
-    })
-  ],
-  methods: {
-    log () {
-      console.log('It works!')
-    },
-    log2 () {
-      console.log('It works two times slower!')
-    }
-  }
+    timer('log', 1000, { ...options })
+  ]
 }
 ```
 
-## Timers handling
+### Timers handling
 
-### Local methods
+#### Component methods
 ```javascript
-import { timer } from 'vue-timers'
-
-export default {
-  timers: [
-    timer('log', 1000, { 
-      autostart: false 
-    })
-  ],
-  methods: {
-    log () {
-      console.log('It works!')
-    }
-  },
-  created () {
-    // Start timer
-    this.timers.log.start()
-    // Stop timer
-    this.timers.log.stop()
-  }
-}
+// Starts `log` timer
+this.$timer.start('log')
+// Stops `log` timer
+this.$timer.stop('log')
 ```
 
-### Global methods
+#### isRunning property
 ```javascript
-import { timer } from 'vue-timers'
-
-export default {
-  timers: [
-    timer('log', 1000, { 
-      autostart: false 
-    })
-  ],
-  methods: {
-    log () {
-      console.log('It works!')
-    },
-    log2 () {
-      console.log('It works too!')
-    }
-  },
-  created () {
-    // Start timer 'log'
-    this.$timers.start('log')
-    // Stop timer 'log'
-    this.$timers.stop('log')
-    // Add timer 'log2'
-    this.$timers.add({
-      name: 'log2',
-      immediate: true
-    })
-    // Remove timer 'log'
-    // CAUTION: Note that it removes log from data too
-    this.$timers.remove('log')
-    // Start timer
-    this.timers.log.start()
-    // Stop timer
-    this.timers.log.stop()
-  }
-}
+this.timers.log.isRunning
 ```
 
-### isRunning property
-![image](https://user-images.githubusercontent.com/4208480/33508558-14ee8b04-d70c-11e7-9158-a36482458769.png)
-```vue
-<template>
-  <div id="app">
-    <!-- CAUTION: If you'll remove timer, it will cause error -->
-    <h1 v-if="timers.log.isRunning">Timer is running</h1>
-    <h1 v-else>Timer is not running</h1>
-  </div>
-</template>
+#### Events
 
-<script>
-import { timer } from 'vue-timers'
-
-export default {
-  timers: [
-    timer('log', 1000)
-  ],
-  methods: {
-    log () {
-      console.log('It works!')
-    }
-  }
-}
-</script>
-```
-
-### Timer events
-It also fires events for timer start/stop, tick and add/remove:
-
-#### Component.vue
+##### Component.vue
 ```javascript
+
 import { timer } from 'vue-timers'
 
 export default {
@@ -278,15 +166,13 @@ export default {
 }
 ```
 
-#### App.vue
+##### App.vue
 ```vue
 <template>
   <timer-component
-    @timer-start:timerName="log('start')"
-    @timer-stop:timerName="log('stop')"
-    @timer-tick:timerName="log('tick')"
-    @timer-start:timerName="log('start')"
-    @timer-remove:timerName="log('remove')"
+    @timer-start:log="timerStarted"
+    @timer-stop:log="timerStopped"
+    @timer-tick:log="timerTicked"
   />
 </template>
 ```
