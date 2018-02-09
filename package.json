@@ -10,7 +10,7 @@
     "name": "Anton Kosykh"
   },
   "scripts": {
-    "lint": "eslint --fix index.js mixin.js"
+    "lint": "eslint --fix index.js mixin.js utils.js"
   },
   "devDependencies": {
     "eslint": "^4.12.1",
