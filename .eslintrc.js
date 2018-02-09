@@ -1,8 +1,12 @@
 module.exports = {
-  "extends": "standard",
+  extends: 'standard',
 
-  "env": {
-    "node": true,
-    "browser": true
+  env: {
+    node: true,
+    browser: true
+  },
+
+  rules: {
+    'space-before-function-paren': 0
   }
-};
+}
