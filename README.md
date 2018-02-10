@@ -37,11 +37,11 @@ export default {
     }
   },
   created () {
-    // It looks ok for first look
+    // It looks OK for the first look
     // But imagine that you have more than one timer
     this.$options.interval = setInterval(this.log, 1000)
     // Ok? What about check if timer works?
-    // And you it's not reactive so you should create data option
+    // And it's not reactive so you should create data option
     console.log(this.$options.interval !== null)  
     // Still ok? So what about reusable timers?
     // New method for that? Rly?  
