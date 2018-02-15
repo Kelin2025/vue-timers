@@ -87,7 +87,7 @@ export default {
   autostart: Boolean,
 
   // Set true to repeat (with setInterval) or false (setTimeout)
-  // Default: true
+  // Default: false
   repeat: Boolean,
 
   // Set true to call first tick immediate 
