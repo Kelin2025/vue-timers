@@ -5,5 +5,5 @@ export default function(Vue) {
 }
 
 export function timer(name, time, options) {
-  return Object.assign({ name, time }, options)
+  return Object.assign({ name: name , time: time }, options)
 }
