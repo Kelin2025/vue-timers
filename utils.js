@@ -9,5 +9,7 @@ export function has(prop) {
 }
 
 export function set(key, value, obj) {
-  return Object.assign({}, obj, { [key]: value })
+  const clone = Object.assign({}, obj)
+  clone.key = value
+  return clone
 }
