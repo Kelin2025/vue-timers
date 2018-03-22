@@ -72,7 +72,7 @@ function normalizeOptions(options, vm) {
 }
 
 export default {
-  data() {
+  data: function() {
     if (!this.$options.timers) return {}
     this.$options.timers = normalizeOptions(this.$options.timers, this)
     return {
@@ -80,13 +80,13 @@ export default {
     }
   },
 
-  created() {
+  created: function() {
     if (!this.$options.timers) return
     var vm = this
     var data = vm.timers
     var options = vm.$options.timers
     vm.$timer = {
-      start(name) {
+      start: function(name) {
         if (process.env.NODE_ENV !== 'production' && !(name in options)) {
           throw new ReferenceError(
             '[vue-timers.start] Cannot find timer ' + name
@@ -104,7 +104,7 @@ export default {
         vm.$emit('timer-start:' + name)
       },
 
-      stop(name) {
+      stop: function(name) {
         if (process.env.NODE_ENV !== 'production' && !(name in options)) {
           throw new ReferenceError(
             '[vue-timers.stop] Cannot find timer ' + name
@@ -117,7 +117,7 @@ export default {
     }
   },
 
-  mounted() {
+  mounted: function() {
     if (!this.$options.timers) return
     var vm = this
     var options = vm.$options.timers
@@ -128,7 +128,7 @@ export default {
     })
   },
 
-  beforeDestroy() {
+  beforeDestroy: function() {
     if (!this.$options.timers) return
     var vm = this
     Object.keys(vm.$options.timers).forEach(function(key) {
