@@ -1,4 +1,6 @@
-import { set } from './utils'
+import { utils } from './utils'
+
+var set = utils.set
 
 function generateData(timers) {
   return Object.keys(timers).reduce(function(acc, cur) {
@@ -135,21 +137,5 @@ export default {
     Object.keys(vm.$options.timers).forEach(function(key) {
       vm.$timer.stop(key)
     })
-  },
-
-  /**
-   * Polyfill for Object.assign for IE11 support
-   */
-  assign: function (to){
-    var assign = Object.assign || function assign(to) {
-      for (var s = 1; s < arguments.length; s += 1) {
-        var from = arguments[s]
-        for (var key in from) {
-          to[key] = from[key]
-        }
-      }
-      return to
-    }
-    return assign
   }
 }
