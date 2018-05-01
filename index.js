@@ -1,3 +1,4 @@
+import assign from './assign.js'
 import mixin from './mixin'
 import utils from './utils'
 
