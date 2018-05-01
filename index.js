@@ -5,5 +5,5 @@ export default function(Vue) {
 }
 
 export function timer(name, time, options) {
-  return Object.assign({ name: name, time: time }, options)
+  return mixin.assign({ name: name, time: time }, options)
 }
