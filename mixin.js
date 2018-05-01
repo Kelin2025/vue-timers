@@ -1,4 +1,3 @@
-// jshint esversion: 6, asi: true
 import { set } from './utils'
 
 function generateData(timers) {
@@ -141,7 +140,7 @@ export default {
   /**
    * Polyfill for Object.assign for IE11 support
    */
-  assign: function (){
+  assign: function (to){
     var assign = Object.assign || function assign(to) {
       for (var s = 1; s < arguments.length; s += 1) {
         var from = arguments[s]
