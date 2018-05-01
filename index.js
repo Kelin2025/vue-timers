@@ -1,3 +1,4 @@
+import assign from './assign.js'
 import mixin from './mixin'
 import utils from './utils'
 
@@ -6,5 +7,5 @@ export default function(Vue) {
 }
 
 export function timer(name, time, options) {
-  return utils.assign({ name: name, time: time }, options)
+  return Object.assign({ name: name, time: time }, options)
 }
