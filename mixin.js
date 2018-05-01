@@ -1,4 +1,6 @@
-import { set } from './utils'
+import { utils } from './utils'
+
+var set = utils.set
 
 function generateData(timers) {
   return Object.keys(timers).reduce(function(acc, cur) {
