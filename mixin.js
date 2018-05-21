@@ -94,7 +94,7 @@ export default {
         }
         data[name].isRunning = true
         data[name].instance = generateTimer(
-          set('timer', data[name].time, options[name]),
+          set('time', data[name].time, options[name]),
           vm
         )
         if (options[name].immediate) {
