@@ -6,7 +6,7 @@ function generateData(timers) {
       cur,
       {
         isRunning: false,
-        timer: timers[cur].time || 0,
+        time: timers[cur].time || 0,
         instance: null
       },
       acc
