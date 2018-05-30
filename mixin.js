@@ -60,15 +60,15 @@ function normalizeConfig(config, vm) {
 function normalizeOptions(options, vm) {
   return Array.isArray(options)
     ? options.reduce(function(res, config) {
-        return set(config.name, normalizeConfig(config, vm), res)
-      }, {})
+      return set(config.name, normalizeConfig(config, vm), res)
+    }, {})
     : Object.keys(options).reduce(function(res, key) {
-        return set(
-          key,
-          normalizeConfig(set('name', key, options[key]), vm),
-          res
-        )
-      }, {})
+      return set(
+        key,
+        normalizeConfig(set('name', key, options[key]), vm),
+        res
+      )
+    }, {})
 }
 
 export default {
