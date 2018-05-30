@@ -92,6 +92,7 @@ export default {
             '[vue-timers.start] Cannot find timer ' + name
           )
         }
+        if (data[name].isRunning) return
         data[name].isRunning = true
         data[name].instance = generateTimer(
           set('time', data[name].time, options[name]),
