@@ -6,7 +6,7 @@ function generateData(timers) {
       cur,
       {
         isRunning: false,
-        timer: timers[cur].time || 0,
+        time: timers[cur].time || 0,
         instance: null
       },
       acc
@@ -60,15 +60,15 @@ function normalizeConfig(config, vm) {
 function normalizeOptions(options, vm) {
   return Array.isArray(options)
     ? options.reduce(function(res, config) {
-        return set(config.name, normalizeConfig(config, vm), res)
-      }, {})
+      return set(config.name, normalizeConfig(config, vm), res)
+    }, {})
     : Object.keys(options).reduce(function(res, key) {
-        return set(
-          key,
-          normalizeConfig(set('name', key, options[key]), vm),
-          res
-        )
-      }, {})
+      return set(
+        key,
+        normalizeConfig(set('name', key, options[key]), vm),
+        res
+      )
+    }, {})
 }
 
 export default {
@@ -92,6 +92,7 @@ export default {
             '[vue-timers.start] Cannot find timer ' + name
           )
         }
+        if (data[name].isRunning) return
         data[name].isRunning = true
         data[name].instance = generateTimer(
           set('time', data[name].time, options[name]),

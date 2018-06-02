@@ -1,5 +1,3 @@
-import mixin from './mixin'
-
 export const set = function(key, value, obj) {
   const clone = assign({}, obj)
   clone[key] = value
