@@ -83,7 +83,7 @@ export default {
   callback: Function/String,
 
   // Autostart timer from created hook
-  // Default: true
+  // Default: false
   autostart: Boolean,
 
   // Set true to repeat (with setInterval) or false (setTimeout)
