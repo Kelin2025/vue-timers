@@ -98,6 +98,10 @@ export default {
   // Time between ticks
   // Default: 1000
   time: Number
+  
+  // Switch timer`s status between activated and deactivated
+  // Default: false
+  isSwitchTab: Boolean
 }
 ```
 
