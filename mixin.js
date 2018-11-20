@@ -53,6 +53,7 @@ function normalizeConfig(config, vm) {
     repeat: 'repeat' in config ? config.repeat : false,
     immediate: 'immediate' in config ? config.immediate : false,
     autostart: 'autostart' in config ? config.autostart : false,
+    isSwitchTab: 'isSwitchTab' in config ? config.isSwitchTab : false,
     callback: (config.callback && config.callback.bind(vm)) || vm[config.name]
   }
 }
@@ -126,6 +127,28 @@ export default {
     Object.keys(options).forEach(function(key) {
       if (options[key].autostart) {
         vm.$timer.start(key)
+      }
+    })
+  },
+
+  activated: function() {
+    if (!this.$options.timers) return
+    var vm = this
+    var options = vm.$options.timers
+    Object.keys(options).forEach(function(key) {
+      if (options[key].isSwitchTab && options[key].instance) {
+        vm.$timer.start(key)
+      }
+    })
+  },
+
+  deactivated: function() {
+    if (!this.$options.timers) return
+    var vm = this
+    var options = vm.$options.timers
+    Object.keys(options).forEach(function(key) {
+      if (options[key].isSwitchTab && options[key].instance) {
+        vm.$timer.stop(key)
       }
     })
   },
