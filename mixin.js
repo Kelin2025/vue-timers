@@ -116,6 +116,18 @@ export default {
         clearTimer(options[name].repeat)(data[name].instance)
         data[name].isRunning = false
         vm.$emit('timer-stop:' + name)
+      },
+
+      restart: function (name) {
+        if (process.env.NODE_ENV !== 'production' && !(name in options)) {
+          throw new ReferenceError(
+            '[vue-timers.restart] Cannot find timer ' + name
+          )
+        }
+        this.stop()
+        this.start()
+        if (!data[name].isRunning) return
+        vm.$emit('timer-restart:' + name)
       }
     }
   },
