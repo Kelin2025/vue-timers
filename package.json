@@ -1,6 +1,6 @@
 {
   "name": "vue-timers",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "license": "MIT",
   "description": "Mixin to manage your intervals in Vue.js",
   "main": "index.js",
