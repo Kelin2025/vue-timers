@@ -146,9 +146,10 @@ export default {
   activated: function() {
     if (!this.$options.timers) return
     var vm = this
+    var data = vm.timers
     var options = vm.$options.timers
     Object.keys(options).forEach(function(key) {
-      if (options[key].isSwitchTab && options[key].instance) {
+      if (options[key].isSwitchTab && data[key].instance) {
         vm.$timer.start(key)
       }
     })
@@ -157,9 +158,10 @@ export default {
   deactivated: function() {
     if (!this.$options.timers) return
     var vm = this
+    var data = vm.timers
     var options = vm.$options.timers
     Object.keys(options).forEach(function(key) {
-      if (options[key].isSwitchTab && options[key].instance) {
+      if (options[key].isSwitchTab && data[key].instance) {
         vm.$timer.stop(key)
       }
     })
