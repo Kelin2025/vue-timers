@@ -118,14 +118,14 @@ export default {
         vm.$emit('timer-stop:' + name)
       },
 
-      restart: function (name) {
+      restart: function(name) {
         if (process.env.NODE_ENV !== 'production' && !(name in options)) {
           throw new ReferenceError(
             '[vue-timers.restart] Cannot find timer ' + name
           )
         }
-        this.stop()
-        this.start()
+        this.stop(name)
+        this.start(name)
         if (!data[name].isRunning) return
         vm.$emit('timer-restart:' + name)
       }
@@ -146,9 +146,10 @@ export default {
   activated: function() {
     if (!this.$options.timers) return
     var vm = this
+    var data = vm.timers
     var options = vm.$options.timers
     Object.keys(options).forEach(function(key) {
-      if (options[key].isSwitchTab && options[key].instance) {
+      if (options[key].isSwitchTab && data[key].instance) {
         vm.$timer.start(key)
       }
     })
@@ -157,9 +158,10 @@ export default {
   deactivated: function() {
     if (!this.$options.timers) return
     var vm = this
+    var data = vm.timers
     var options = vm.$options.timers
     Object.keys(options).forEach(function(key) {
-      if (options[key].isSwitchTab && options[key].instance) {
+      if (options[key].isSwitchTab && data[key].instance) {
         vm.$timer.stop(key)
       }
     })
