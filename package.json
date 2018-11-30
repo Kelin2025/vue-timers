@@ -11,7 +11,8 @@
   },
   "scripts": {
     "lint": "eslint --fix index.js mixin.js utils.js",
-    "size": "size-limit"
+    "size": "size-limit",
+    "test": "jest"
   },
   "size-limit": [
     {
@@ -20,12 +21,18 @@
     }
   ],
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.26",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^4.12.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "size-limit": "^0.14.0"
+    "jest": "^23.6.0",
+    "size-limit": "^0.14.0",
+    "vue": "^2.5.17",
+    "vue-template-compiler": "^2.5.17"
   }
 }
