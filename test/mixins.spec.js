@@ -1,26 +1,36 @@
-/* global describe it expect */
+/* global describe it expect jest beforeAll afterAll */
 import { mount } from '@vue/test-utils'
 import VueTimers from '../mixin'
 
-const component = { template: '<div></div>' }
+const component = {
+  template: '<div></div>',
+  mixins: [VueTimers],
+  timers: {
+    log: { time: 1000 }
+  },
+  data() {
+    return {
+      count: 0
+    }
+  },
+  methods: {
+    log() {
+      this.count++
+    }
+  }
+}
 
 describe('default options', () => {
   // Now mount the component and you have the wrapper
-  const wrapper = mount(component, {
-    mixins: [VueTimers],
-    timers: {
-      log: { time: 1000 }
-    },
-    data() {
-      return {
-        test: 0
-      }
-    },
-    methods: {
-      log() {
-        this.test++
-      }
-    }
+  const wrapper = mount(component)
+
+  beforeAll(() => {
+    jest.useFakeTimers()
+  })
+
+  afterAll(() => {
+    jest.clearAllTimers()
+    jest.useRealTimers()
   })
 
   it('start the timer which not exist', () => {
@@ -43,7 +53,7 @@ describe('default options', () => {
     }
   })
 
-  it('should be default options', () => {
+  it('should be has default options', () => {
     expect(wrapper.vm.$options.timers.log).toEqual({
       name: 'log',
       time: 1000,
@@ -59,6 +69,9 @@ describe('default options', () => {
     wrapper.vm.$timer.start('log')
     expect(wrapper.vm.timers.log.isRunning).toBe(true)
     expect(wrapper.emitted()['timer-start:log']).toBeTruthy()
+    expect(wrapper.vm.count).toBe(0)
+    jest.advanceTimersByTime(1000)
+    expect(wrapper.vm.count).toBe(1)
 
     wrapper.vm.$timer.stop('log')
     expect(wrapper.vm.timers.log.isRunning).toBe(false)
@@ -74,22 +87,7 @@ describe('default options', () => {
 
 describe('execute start or stop 2 times', () => {
   // Now mount the component and you have the wrapper
-  const wrapper = mount(component, {
-    mixins: [VueTimers],
-    timers: {
-      log: { time: 1000 }
-    },
-    data() {
-      return {
-        test: 0
-      }
-    },
-    methods: {
-      log() {
-        this.test++
-      }
-    }
-  })
+  const wrapper = mount(component)
 
   it('test execute start or stop 2 times', () => {
     wrapper.vm.$timer.start('log')
@@ -105,53 +103,38 @@ describe('execute start or stop 2 times', () => {
 describe('autoStart: true', () => {
   // Now mount the component and you have the wrapper
   const wrapper = mount(component, {
-    mixins: [VueTimers],
     timers: {
       log: { time: 1000, autostart: true }
-    },
-    data() {
-      return {
-        test: 0
-      }
-    },
-    methods: {
-      log() {
-        this.test++
-      }
     }
   })
 
   it('test start and stop', () => {
     expect(wrapper.vm.timers.log.isRunning).toBe(true)
     expect(wrapper.emitted()['timer-start:log']).toBeTruthy()
-
-    wrapper.vm.$timer.stop('log')
-    expect(wrapper.vm.timers.log.isRunning).toBe(false)
-    expect(wrapper.emitted()['timer-stop:log']).toBeTruthy()
   })
 })
 
 describe('immediate: true', () => {
   // Now mount the component and you have the wrapper
   const wrapper = mount(component, {
-    mixins: [VueTimers],
     timers: {
       log: { time: 1000, immediate: true }
-    },
-    data() {
-      return {
-        test: 0
-      }
-    },
-    methods: {
-      log() {
-        this.test++
-      }
     }
+  })
+
+  beforeAll(() => {
+    jest.useFakeTimers()
+  })
+
+  afterAll(() => {
+    jest.clearAllTimers()
+    jest.useRealTimers()
   })
 
   it('test immediate: true', () => {
     wrapper.vm.$timer.start('log')
-    expect(wrapper.vm.test).toBe(1)
+    expect(wrapper.vm.count).toBe(1)
+    jest.advanceTimersByTime(1000)
+    expect(wrapper.vm.count).toBe(2)
   })
 })
