@@ -130,3 +130,28 @@ describe('autoStart: true', () => {
     expect(wrapper.emitted()['timer-stop:log']).toBeTruthy()
   })
 })
+
+describe('immediate: true', () => {
+  // Now mount the component and you have the wrapper
+  const wrapper = mount(component, {
+    mixins: [VueTimers],
+    timers: {
+      log: { time: 1000, immediate: true }
+    },
+    data() {
+      return {
+        test: 0
+      }
+    },
+    methods: {
+      log() {
+        this.test++
+      }
+    }
+  })
+
+  it('test immediate: true', () => {
+    wrapper.vm.$timer.start('log')
+    expect(wrapper.vm.test).toBe(1)
+  })
+})
