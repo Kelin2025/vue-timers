@@ -126,7 +126,6 @@ export default {
         }
         this.stop(name)
         this.start(name)
-        if (!data[name].isRunning) return
         vm.$emit('timer-restart:' + name)
       }
     }
