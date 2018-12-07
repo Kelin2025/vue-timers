@@ -1,8 +1,8 @@
-import Vue from 'vue'
 import VueTimers from '../index'
-import { mount } from '@vue/test-utils'
+import { mount, createLocalVue } from '@vue/test-utils'
 
-Vue.use(VueTimers)
+const localVue = createLocalVue()
+localVue.use(VueTimers)
 
 const component = {
   template: '<div></div>',
@@ -33,6 +33,7 @@ describe('global import', () => {
 
   it('test setTimeout', () => {
     const wrapper = mount(component, {
+      localVue,
       timers: {
         log: { time: 1000 }
       }
@@ -53,6 +54,7 @@ describe('global import', () => {
 
   it('test setInterval', () => {
     const wrapper = mount(component, {
+      localVue,
       timers: {
         log: { time: 1000, repeat: true }
       }
