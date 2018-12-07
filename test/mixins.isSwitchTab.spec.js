@@ -1,4 +1,3 @@
-/* global describe it expect jest beforeAll afterAll */
 import { mount } from '@vue/test-utils'
 import VueTimers from '../mixin'
 
@@ -43,8 +42,11 @@ describe('isSwitchTab: true', () => {
     jest.useFakeTimers()
   })
 
-  afterAll(() => {
+  afterEach(() => {
     jest.clearAllTimers()
+  })
+
+  afterAll(() => {
     jest.useRealTimers()
   })
 

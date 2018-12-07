@@ -1,4 +1,3 @@
-/* global describe it expect jest beforeAll afterAll */
 import { mount } from '@vue/test-utils'
 import VueTimers from '../mixin'
 
@@ -28,8 +27,11 @@ describe('default options', () => {
     jest.useFakeTimers()
   })
 
-  afterAll(() => {
+  afterEach(() => {
     jest.clearAllTimers()
+  })
+
+  afterAll(() => {
     jest.useRealTimers()
   })
 
