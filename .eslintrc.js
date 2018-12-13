@@ -9,17 +9,4 @@ module.exports = {
   rules: {
     'space-before-function-paren': 0
   },
-
-  globals: {
-    describe: true,
-    it: true,
-    before: true,
-    beforeEach: true,
-    beforeAll: true,
-    after: true,
-    afterEach: true,
-    afterAll: true,
-    expect: true,
-    jest: true,
-  },
 }
