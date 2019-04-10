@@ -24,7 +24,7 @@
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.26",
     "babel-core": "^6.26.3",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^24.7.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
@@ -34,12 +34,12 @@
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jest": "^23.6.0",
+    "jest": "^24.7.1",
     "rollup": "^0.67.4",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-terser": "^3.0.0",
-    "size-limit": "^0.14.0",
+    "size-limit": "^1.0.1",
     "vue": "^2.5.17",
     "vue-template-compiler": "^2.5.17"
   }
