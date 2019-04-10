@@ -19,7 +19,7 @@ Vue.use(VueTimers)
 
 #### 2.2. Or use mixin for the specific component
 ```javascript
-import VueTimers from 'vue-timers/mixin'
+import {mixin as VueTimers} from 'vue-timers'
 
 export default {
   mixins: [VueTimers]
@@ -169,7 +169,7 @@ export default {
 ```javascript
 export default {
   timers: [
-    { name: 'log' time: 1000, ...options }
+    { name: 'log', time: 1000, ...options }
   ]
 }
 ```

@@ -1,4 +1,4 @@
-import { set } from './utils'
+import { set, isArray } from './utils'
 
 function generateData(timers) {
   return Object.keys(timers).reduce(function(acc, cur) {
@@ -59,7 +59,7 @@ function normalizeConfig(config, vm) {
 }
 
 function normalizeOptions(options, vm) {
-  return Array.isArray(options)
+  return isArray(options)
     ? options.reduce(function(res, config) {
       return set(config.name, normalizeConfig(config, vm), res)
     }, {})
@@ -126,7 +126,6 @@ export default {
         }
         this.stop(name)
         this.start(name)
-        if (!data[name].isRunning) return
         vm.$emit('timer-restart:' + name)
       }
     }

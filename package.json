@@ -1,9 +1,9 @@
 {
   "name": "vue-timers",
-  "version": "1.10.0",
+  "version": "2.0.0",
   "license": "MIT",
   "description": "Mixin to manage your intervals in Vue.js",
-  "main": "index.js",
+  "main": "index.min.js",
   "repository": "https://github.com/kelin2025/vue-timers",
   "author": {
     "email": "kelin2025@yandex.ru",
@@ -11,21 +11,36 @@
   },
   "scripts": {
     "lint": "eslint --fix index.js mixin.js utils.js",
-    "size": "size-limit"
+    "size": "size-limit",
+    "test": "jest",
+    "build": "rollup -c rollup.config.js"
   },
   "size-limit": [
     {
-      "path": "./index.js",
+      "path": "./index.min.js",
       "limit": "600 B"
     }
   ],
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.26",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^4.12.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "size-limit": "^0.14.0"
+    "jest": "^23.6.0",
+    "rollup": "^0.67.4",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-terser": "^3.0.0",
+    "size-limit": "^0.14.0",
+    "vue": "^2.5.17",
+    "vue-template-compiler": "^2.5.17"
   }
 }
