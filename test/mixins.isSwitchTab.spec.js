@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import VueTimers from '../mixin'
+import {mixin as VueTimers} from '../index'
 
 const component1 = {
   template: '<div></div>',
