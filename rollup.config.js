@@ -15,14 +15,13 @@ export default {
       exclude: 'node_modules/**',
       presets: [
         [
-          'env',
+          '@babel/preset-env',
           {
             modules: false
           }
-        ],
-        'stage-2'
+        ]
       ],
-      plugins: ['external-helpers'],
+      plugins: ['@babel/plugin-external-helpers'],
       babelrc: false
     }),
     terser()
