@@ -1,7 +1,7 @@
 {
   "presets": [
     ["@babel/preset-env", {
-      "targets:": { "node": "6" } // change this to your node version
+      "targets": { "node": "6" } // change this to your node version
     }]
   ]
 }
