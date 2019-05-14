@@ -26,6 +26,23 @@ export default {
 }
 ```
 
+#### 2.3. Nuxt plugins
+`nuxt.config.js`:
+```javascript
+export default {
+  plugins: [
+    { src: '~/plugins/vue-timers', mode: 'client' }
+  ]
+}
+```
+`plugins/vue-timers.js`:
+```javascript
+import Vue from 'vue'
+import VueTimers from 'vue-timers'
+
+Vue.use(VueTimers)
+```
+
 ## What it does?
 It creates timer instances in components and slightly reduces boilerplate code with their handling.  
 See the following code
