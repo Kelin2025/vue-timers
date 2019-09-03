@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "license": "MIT",
   "description": "Mixin to manage your intervals in Vue.js",
-  "main": "index.min.js",
+  "main": "dist/vue-timers.esm.js",
+  "jsdelivr": "dist/vue-timers.umd.js",
   "repository": "https://github.com/kelin2025/vue-timers",
   "author": {
     "email": "kelin2025@yandex.ru",
@@ -37,6 +38,7 @@
     "rollup": "^0.67.4",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-terser": "^3.0.0",
     "size-limit": "^1.0.1",
     "vue": "^2.5.17",
