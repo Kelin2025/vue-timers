@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "license": "MIT",
   "description": "Mixin to manage your intervals in Vue.js",
-  "main": "dist/vue-timers.esm.js",
+  "main": "dist/vue-timers.umd.js",
+  "module": "dist/vue-timers.esm.js",
   "jsdelivr": "dist/vue-timers.umd.js",
   "repository": "https://github.com/kelin2025/vue-timers",
   "author": {
