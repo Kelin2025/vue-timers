@@ -3,7 +3,12 @@ Simple mixin to manage timers or intervals for Vue.js
 
 ## Installation
 
-#### 1. Install from package manager
+#### 1.1 Use CDN
+```
+<script src="https://cdn.jsdelivr.net/npm/vue-timers/dist/vue-timers.umd.js"></script>
+```
+
+#### 1.2 Install from package manager
 ```
 npm install vue-timers
 yarn add vue-timers
